@@ -8,11 +8,55 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Chart.min.js"></script>
     <script src="js/Chart.bundle.min.js"></script>
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=1947911464');
+            query.setQuery("select A,B,C,D where D>25 ");
+            query.send(handleQueryResponse);
+            console.log('1');
+        }
+
+
+        function handleQueryResponse(response) {
+            if (response.isError()) {
+                alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                return;
+            }
+
+            var data = response.getDataTable();
+            var numrows = data.getNumberOfRows();
+            var tableHtml = '<table width="800">';
+
+            for (var row = 0; row < numrows; row++) {
+                var a = '';
+                var time = data.getValue(row, 0);
+                var sysid = data.getValue(row, 1);
+                var name = data.getValue(row, 2);
+                var value = data.getValue(row, 3);
+
+                tableHtml += '<tr><td>ID：' + sysid + '</td></tr><tr><td>Name：' + name + '</td></tr><tr><td>Age：' + value + '</td></tr>';
+                a = '<tr><td>' + time + '</td><td>' + sysid + '</td><td>' + name + '</td><td>' + value + '</td>';
+                console.log(row, a);
+            }
+            tableHtml += '</table>';
+            $('table').append(tableHtml);
+        }
+    </script>
 </head>
 <body style="background-color: #333333;">
     <div style="margin: 10px;">
         <h1 style="color: white;">Hello, world!</h1>
         <form>
+            <table style="color: white;"></table>
             <input type="button" class="btn btn-primary" value="A" onclick="Show_Value()">
             <input type="button" class="btn btn-primary" value="B" onclick="Destroy_Value()">
             <div>
