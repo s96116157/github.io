@@ -13,6 +13,8 @@
     <div style="margin: 10px;">
         <h1 style="color: white;">Hello, world!</h1>
         <form>
+            <input type="button" class="btn btn-primary" value="A" onclick="Show_Value()">
+            <input type="button" class="btn btn-primary" value="B" onclick="Destroy_Value()">
             <div>
                 <div class="row show-grid">
                     <div class="col-xs-6 col-md-4">
@@ -69,37 +71,52 @@
             </div>
         </form>
     </div>
-    <script>
-        new Chart(document.getElementById("chartjs-4"),
-            {
-                "type": "doughnut", "data": {
-                    "labels": ["Red", "Blue", "Yellow"],
-                    "datasets": [{
-                        "label": "My First Dataset", "data": [300, 50, 100],
-                        "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                    }]
-                }
-            });
-        new Chart(document.getElementById("chartjs-1"),
-            {
-                "type": "bar", "data": {
-                    "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                    "datasets": [{
-                        "label": "My First Dataset", "data": [65, 59, 80, 81, 56, 55, 40], "fill": false,
-                        "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                        "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
-                        "borderWidth": 1
-                    }]
-                }, "options": {
-                    "scales": {
-                        "yAxes": [{
-                            "ticks": {
-                                "beginAtZero": true
-                            }
+    <script type="text/javascript">
+        function Destroy_Value() {
+            new Chart(document.getElementById("chartjs-4"),
+                    {
+                        "type": "doughnut", "data": {
+                            "labels": ["A", "B", "C"],
+                            "datasets": [{
+                                "label": "My First Dataset", "data": [100, 150, 20],
+                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                            }]
+                        }
+                    });
+        };
+
+        function Show_Value() {
+            new Chart(document.getElementById("chartjs-4"),
+                {
+                    "type": "doughnut", "data": {
+                        "labels": ["Red", "Blue", "Yellow"],
+                        "datasets": [{
+                            "label": "My First Dataset", "data": [300, 50, 100],
+                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
                         }]
                     }
-                }
-            });
+                });
+            new Chart(document.getElementById("chartjs-1"),
+                {
+                    "type": "bar", "data": {
+                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                        "datasets": [{
+                            "label": "My First Dataset", "data": [65, 59, 80, 81, 56, 55, 40], "fill": false,
+                            "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                            "borderWidth": 1
+                        }]
+                    }, "options": {
+                        "scales": {
+                            "yAxes": [{
+                                "ticks": {
+                                    "beginAtZero": true
+                                }
+                            }]
+                        }
+                    }
+                });
+        }
     </script>
 </body>
 </html>
