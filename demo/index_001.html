@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Order</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="js/Chart.min.js"></script>
+    <script src="js/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+    <style>
+        body {
+            font-family: "Microsoft JhengHei",Helvetica,Arial,Verdana,sans-serif;
+            color: white;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body style="background-color: #333333;">
+    <!--============================================================================-->
+
+    <div class="modal fade" id="modal_group" role="dialog" data-backdrop="static" data-keyboard="false" style="color: black;">
+        <div class="modal-dialog" style="width: 650px;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title"><strong>購物車</strong></h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>名稱</th>
+                                <th>數量</th>
+                                <th>價格</th>
+                                <th>取消 </th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_001">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
+                    <button class="btn btn-primary">送出訂單</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--============================================================================-->
+
+    <div style="margin: 10px;">
+        <h1 style="color: white;">Hello, do you want to order something?</h1>
+        <form>
+            <br />
+            <div class="row show-grid">
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <div>
+                        <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_002.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                        <div>
+                            名稱：A  產品 
+                        <br />
+                            價格：150 NT
+                        </div>
+                        數量
+                        <select style="color: black" id="select_A">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                        <button type="button" class="btn btn-success " onclick="Add_items('A')">放入購物車</button>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <div>
+                        <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_003.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                        <div>
+                            名稱：B  產品 
+                        <br />
+                            價格：200 NT
+                        </div>
+                        數量
+                       <select style="color: black" id="select_B">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="7">7</option>
+                           <option value="8">8</option>
+                           <option value="9">9</option>
+                       </select>
+                        <button type="button" class="btn btn-success " onclick="Add_items('B')">放入購物車</button>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <div>
+                        <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_004.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                        <div>
+                            名稱：C  產品 
+                        <br />
+                            價格：250 NT
+                        </div>
+                        數量
+                        <select style="color: black" id="select_C">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                        <button type="button" class="btn btn-success " onclick="Add_items('C')">放入購物車</button>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <div>
+                        <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_005.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                        <div>
+                            名稱：D  產品 
+                        <br />
+                            價格：300 NT
+                        </div>
+                        數量
+                        <select style="color: black" id="select_D">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                        <button type="button" class="btn btn-success " onclick="Add_items('D')">放入購物車</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div style="text-align: center;">
+                <img alt="50x50" src="Picture/icon_000.png" data-holder-rendered="true" style="width: 36px; height: 36px;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_group">
+                    購買商品　
+                    <span class="badge badge-light">
+                        <div id="kValue" name="kValue"></div>
+                    </span>
+                </button>
+            </div>
+            <input type="button" class="btn btn-primary" value="TEST" onclick="Google_Post()">
+        </form>
+    </div>
+    <script type="text/javascript">
+        var items = [];
+        var number = [];
+        var price = [];
+        var x = 0;
+        var p = 0;
+
+        myFunction();
+        function myFunction() {
+            $("#kValue").append("0");
+        }
+
+        function switch_return(x) {
+            var int = 0;
+            switch (x) {
+                case "A":
+                    int = 150;
+                    break;
+                case "B":
+                    int = 200;
+                    break;
+                case "C":
+                    int = 250;
+                    break;
+                case "D":
+                    int = 300;
+                    break;
+                default:
+                    int = 0;
+            }
+            return int;
+        }
+
+        function Add_items(Type) {
+            x = document.getElementById("select_" + Type).value;
+
+            items.push(Type);
+            number.push(x);
+            price.push(x * switch_return(Type));
+            document.getElementById("kValue").innerHTML = items.length;
+
+            console.log(items);
+            $("#table_001").append("<tr id='table_" + items.length + "'><td>" + items.length + "</td><td>" + Type + "</td><td>" + x + "</td><td>" + x * switch_return(Type) + "</td></tr>");
+        }
+
+        function Google_Post() {
+            if (1 == 1) {
+                alert("OK");
+                var url = "https://script.google.com/macros/s/AKfycbwQerqt4HKL_H5hvFvshvMSwWrnAusvvd0eVhDFwViHNmSQZ2tm/exec";
+                var parameter = {
+                    startRow: 1,
+                    startColumn: 1,
+                    key: 96116157,
+                    type: "write",
+                    time: GetDate()
+                };
+
+                $.get(url, parameter, function (data) {
+                    console.log(data);
+                });
+            };
+        };
+
+        function GetDate() {
+            var d = new Date();
+            var val_time = d.toLocaleTimeString();
+            var val_day = d.getDate();
+            var val_month = d.getMonth() + 1;
+            var val_year = d.getFullYear();
+            var time = val_year + "年" + val_month + "月" + val_day + "日 " + val_time;
+            return time;
+        }
+    </script>
+</body>
+</html>
