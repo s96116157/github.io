@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Hello, world!</title>
+    <title>Order</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Chart.min.js"></script>
     <script src="js/Chart.bundle.min.js"></script>
-    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script type="text/javascript">
         // Load the Visualization API and the corechart package.
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -20,7 +20,7 @@
 
         function drawChart() {
             var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=1947911464');
-            query.setQuery("select A,B,C,D where D>25 ");
+            query.setQuery("SELECT count(B) group by B");
             query.send(handleQueryResponse);
             console.log('1');
         }
@@ -34,31 +34,119 @@
 
             var data = response.getDataTable();
             var numrows = data.getNumberOfRows();
+            console.log("numrows", numrows);
             var tableHtml = '<table width="800">';
 
             for (var row = 0; row < numrows; row++) {
                 var a = '';
-                var time = data.getValue(row, 0);
-                var sysid = data.getValue(row, 1);
-                var name = data.getValue(row, 2);
-                var value = data.getValue(row, 3);
+                var A = data.getValue(row, 0);
+                //var B = data.getValue(row, 1);
+                //var name = data.getValue(row, 2);
+                //var value = data.getValue(row, 3);
 
-                tableHtml += '<tr><td>ID：' + sysid + '</td></tr><tr><td>Name：' + name + '</td></tr><tr><td>Age：' + value + '</td></tr>';
-                a = '<tr><td>' + time + '</td><td>' + sysid + '</td><td>' + name + '</td><td>' + value + '</td>';
+                tableHtml += '<tr><td>ID：' + A + '</td></tr><tr><td>Name：' + A + '</td></tr><tr><td>Age：' + A + '</td></tr>';
+                a = '<tr><td>' + A + '</td><td>' + A + '</td><td>' + A + '</td><td>' + A + '</td>';
                 console.log(row, a);
             }
             tableHtml += '</table>';
             $('table').append(tableHtml);
         }
+
+        function Google_Post() {
+            if (1 == 1) {
+                alert("OK");
+                var url = "https://script.google.com/macros/s/AKfycbwQerqt4HKL_H5hvFvshvMSwWrnAusvvd0eVhDFwViHNmSQZ2tm/exec";
+                var parameter = {
+                    startRow: 1,
+                    startColumn: 1,
+                    key: 96116157,
+                    type: "write",
+                    time: GetDate()
+                };
+
+                $.get(url, parameter, function (data) {
+                    console.log(data);
+                });
+            };
+        };
+
+        function GetDate() {
+            var d = new Date();
+            var val_time = d.toLocaleTimeString();
+            var val_day = d.getDate();
+            var val_month = d.getMonth() + 1;
+            var val_year = d.getFullYear();
+            var time = val_year + "年" + val_month + "月" + val_day + "日 " + val_time;
+            return time;
+        }
     </script>
+
+    <style>
+        body {
+            font-family: "Microsoft JhengHei",Helvetica,Arial,Verdana,sans-serif;
+            color: white;
+            font-size: 22px;
+        }
+    </style>
 </head>
 <body style="background-color: #333333;">
+
+    <!--============================================================================-->
+
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">对话框标题</h3>
+        </div>
+        <div class="modal-body">
+            <p>对话框主体内容 ...…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary">保存修改</button>
+        </div>
+    </div>
+
+    <!--============================================================================-->
+
     <div style="margin: 10px;">
-        <h1 style="color: white;">Hello, world!</h1>
+        <h1 style="color: white;">Hello, do you want to order something?</h1>
         <form>
-            <table style="color: white;"></table>
-            <input type="button" class="btn btn-primary" value="A" onclick="Show_Value()">
-            <input type="button" class="btn btn-primary" value="B" onclick="Destroy_Value()">
+            <br />
+            <div class="row show-grid">
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_002.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                    <div>
+                        150 NT
+                    <button type="button" class="btn btn-success ">放入購物車</button>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_003.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                    <div>
+                        150 NT
+                    <button type="button" class="btn btn-success ">放入購物車</button>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_004.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                    <div>
+                        150 NT
+                    <button type="button" class="btn btn-success ">放入購物車</button>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3" style="text-align: center;">
+                    <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_005.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
+                    <div>
+                        150 NT
+                    <button type="button" class="btn btn-success ">放入購物車</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div style="text-align: center;">
+                <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">購買商品　<span class="badge badge-light">4</span></a>
+            </div>
             <div>
                 <div class="row show-grid">
                     <div class="col-xs-6 col-md-4">
@@ -74,45 +162,15 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+                    <div class="col-xs-6 col-md-4"></div>
                 </div>
 
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1" style="color: white;">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    Check me out
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-primary">
-                Notifications <span class="badge badge-light">4</span>
-            </button>
-            <span class="badge badge-primary">Primary</span>
-            <span class="badge badge-secondary">Secondary</span>
-            <span class="badge badge-success">Success</span>
-            <span class="badge badge-danger">Danger</span>
-            <span class="badge badge-warning">Warning</span>
-            <span class="badge badge-info">Info</span>
-            <span class="badge badge-light">Light</span>
-            <span class="badge badge-dark">Dark</span>
 
-            <div class="row show-grid">
-                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-                <div class="col-xs-6 col-md-4">
-                    <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="Picture/icon_001.png" data-holder-rendered="true" style="width: 200px; height: 200px;">
-                </div>
-                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-            </div>
+            <table style="color: white;"></table>
+            <input type="button" class="btn btn-primary" value="TEST" onclick="Google_Post()">
+            <input type="button" class="btn btn-primary" value="A" onclick="Show_Value()">
+            <input type="button" class="btn btn-primary" value="B" onclick="Destroy_Value()">
         </form>
     </div>
     <script type="text/javascript">
