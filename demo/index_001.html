@@ -40,7 +40,7 @@
                                 <th>名稱</th>
                                 <th>數量</th>
                                 <th>價格</th>
-                                <th>取消 </th>
+                                <th style='text-align: center;'>取消 </th>
                             </tr>
                         </thead>
                         <tbody id="table_001">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
-                    <button class="btn btn-primary">送出訂單</button>
+                    <button class="btn btn-primary" onclick="Google_Post()" data-dismiss="modal" aria-hidden="true">送出訂單</button>
                 </div>
             </div>
         </div>
@@ -59,6 +59,7 @@
 
     <div style="margin: 10px;">
         <h1 style="color: white;">Hello, do you want to order something?</h1>
+        <h2 style="color: white;" id="form_id">您的訂單編號：</h2>
         <form>
             <br />
             <div class="row show-grid">
@@ -165,15 +166,18 @@
                     </span>
                 </button>
             </div>
-            <input type="button" class="btn btn-primary" value="TEST" onclick="Google_Post()">
+            <!--<input type="button" class="btn btn-primary" value="TEST" onclick="Google_Post()">-->
         </form>
     </div>
     <script type="text/javascript">
-        var items = [];
-        var number = [];
-        var price = [];
+        var items = new Array();
+        var number = new Array();
+        var price = new Array();
         var x = 0;
         var p = 0;
+
+        var today = Date.now();
+        console.log(today);
 
         myFunction();
         function myFunction() {
@@ -218,24 +222,27 @@
                 "</td><td>" + Type +
                 "</td><td>" + x +
                 "</td><td>" + x * switch_price(Type) +
-                "</td><td><button type='button' class='btn btn-success' onclick='btn_delete(" + items.length + ")'>刪除</button></td></tr>"
+                "</td><td style='text-align: center;'><button type='button' class='btn btn-danger' onclick='btn_delete(" + items.length + ")'>取消</button></td></tr>"
                 );
         }
 
         function btn_delete(i) {
-            document.getElementById("table_001").innerHTML = "";
-            console.log(items.length);
-            items.splice(i - 1, 1)
-            number.splice(i - 1, 1)
-            price.splice(i - 1, 1)
 
-            console.log('items', items);
-            console.log('number', number);
-            console.log('price', price);
-            console.log(items.length);
-            console.log('=========================');
-            build_table()
-            document.getElementById("kValue").innerHTML = items.length;
+            if (confirm("確定要取消項目 " + i + " 的商品嗎?")) {
+                document.getElementById("table_001").innerHTML = "";
+                console.log(items.length);
+                items.splice(i - 1, 1)
+                number.splice(i - 1, 1)
+                price.splice(i - 1, 1)
+
+                console.log('items', items);
+                console.log('number', number);
+                console.log('price', price);
+                console.log(items.length);
+                console.log('=========================');
+                build_table()
+                document.getElementById("kValue").innerHTML = items.length;
+            } else { }
             //$("#table_001").append("<tr id='table_" + items.length + "'><td>" + items.length + "</td><td>" + Type + "</td><td>" + x + "</td><td>" + x * switch_return(Type) + "</td></tr>");
 
         }
@@ -253,27 +260,54 @@
                     "</td><td>" + items[i] +
                     "</td><td>" + number[i] +
                     "</td><td>" + price[i] +
-                    "</td><td><button type='button' class='btn btn-success' onclick='btn_delete(" + table_num + ")'>刪除</button></td></tr>"
+                    "</td><td style='text-align: center;'><button type='button' class='btn btn-danger' onclick='btn_delete(" + table_num + ")'>取消</button></td></tr>"
                 );
             }
         }
 
         function Google_Post() {
-            if (1 == 1) {
-                alert("OK");
-                var url = "https://script.google.com/macros/s/AKfycbwQerqt4HKL_H5hvFvshvMSwWrnAusvvd0eVhDFwViHNmSQZ2tm/exec";
-                var parameter = {
-                    startRow: 1,
-                    startColumn: 1,
-                    key: 96116157,
-                    type: "write",
-                    time: GetDate()
-                };
 
-                $.get(url, parameter, function (data) {
-                    console.log(data);
-                });
-            };
+            if (confirm("確定要送出訂單嗎?")) {
+                if (items.length != 0) {
+                    var url = "https://script.google.com/macros/s/AKfycbwQerqt4HKL_H5hvFvshvMSwWrnAusvvd0eVhDFwViHNmSQZ2tm/exec";
+                    var parameter = {
+                        items: items.toString(),
+                        number: number.toString(),
+                        price: price.toString(),
+                        key: 96116157,
+                        type: "write",
+                        time: GetDate()
+                    };
+
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: parameter,
+                        success: function (data) {
+                            if (data.length != 13) {
+                                alert("操作失敗請重新再試一次。");
+                            } else {
+                                document.getElementById("form_id").innerHTML = "您的訂單編號：" + data.toString();
+                                items = [];
+                                number = [];
+                                price = [];
+                                document.getElementById("kValue").innerHTML = 0;
+                                document.getElementById("table_001").innerHTML = "";
+                                alert("訂購成功！！\n您的訂單編號為：" + data.toString());
+                            }
+                        },
+                        error: function (data) {
+                            alert("操作失敗請重新再試一次。");
+                        }
+                    });
+                }
+                else {
+                    alert("購物車沒有東西。");
+                }
+            }
+            else {
+                //alert("已經取消了刪除操作");
+            }
         };
 
         function GetDate() {
