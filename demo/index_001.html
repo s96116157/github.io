@@ -180,7 +180,7 @@
             $("#kValue").append("0");
         }
 
-        function switch_return(x) {
+        function switch_price(x) {
             var int = 0;
             switch (x) {
                 case "A":
@@ -206,11 +206,56 @@
 
             items.push(Type);
             number.push(x);
-            price.push(x * switch_return(Type));
+            price.push(x * switch_price(Type));
             document.getElementById("kValue").innerHTML = items.length;
 
-            console.log(items);
-            $("#table_001").append("<tr id='table_" + items.length + "'><td>" + items.length + "</td><td>" + Type + "</td><td>" + x + "</td><td>" + x * switch_return(Type) + "</td></tr>");
+            console.log('items', items);
+            console.log('number', number);
+            console.log('price', price);
+
+            $("#table_001").append(
+                "<tr id='table_" + items.length + "'><td>" + items.length +
+                "</td><td>" + Type +
+                "</td><td>" + x +
+                "</td><td>" + x * switch_price(Type) +
+                "</td><td><button type='button' class='btn btn-success' onclick='btn_delete(" + items.length + ")'>刪除</button></td></tr>"
+                );
+        }
+
+        function btn_delete(i) {
+            document.getElementById("table_001").innerHTML = "";
+            console.log(items.length);
+            items.splice(i - 1, 1)
+            number.splice(i - 1, 1)
+            price.splice(i - 1, 1)
+
+            console.log('items', items);
+            console.log('number', number);
+            console.log('price', price);
+            console.log(items.length);
+            console.log('=========================');
+            build_table()
+            document.getElementById("kValue").innerHTML = items.length;
+            //$("#table_001").append("<tr id='table_" + items.length + "'><td>" + items.length + "</td><td>" + Type + "</td><td>" + x + "</td><td>" + x * switch_return(Type) + "</td></tr>");
+
+        }
+
+        function build_table() {
+            var int = items.length;
+            var table_num = 0;
+            for (i = 0; i < int; i++) {
+                table_num++;
+                console.log('次數', int);
+                console.log('items', items[i]);
+                console.log('number', number[i]);
+                console.log('price', price[i]);
+                $("#table_001").append("<tr id='table_" + table_num + "'><td>" + table_num +
+                    "</td><td>" + items[i] +
+                    "</td><td>" + number[i] +
+                    "</td><td>" + price[i] +
+                    "</td><td><button type='button' class='btn btn-success' onclick='btn_delete(" + table_num + ")'>刪除</button></td></tr>"
+                );
+            }
         }
 
         function Google_Post() {
