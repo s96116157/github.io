@@ -17,6 +17,20 @@
         // Set a callback to run when the Google Visualization API is loaded.
         google.charts.setOnLoadCallback(drawChart);
 
+        function quesy() {
+            document.getElementById("table_001").innerHTML = "";
+            var id = document.getElementById("select_value").value;
+            var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=0');
+            if (id.length != 0) {
+                query.setQuery("SELECT A,C,D,E,F,G where B=1 " + "and G=" + id.toString());
+            }
+            else {
+                query.setQuery("SELECT A,C,D,E,F,G where B=1");
+            }
+            query.send(handleQueryResponse);
+            //google.charts.setOnLoadCallback(drawChart);
+        }
+
         function drawChart() {
             var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=0');
             query.setQuery("SELECT A,C,D,E,F,G where B=1");
@@ -27,7 +41,8 @@
 
         function handleQueryResponse(response) {
             if (response.isError()) {
-                alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                alert("沒有此訂單編號。");
+                //alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
                 return;
             }
 
@@ -76,6 +91,10 @@
         <h1 style="color: white;">Checking your order</h1>
         <form>
             <br />
+            查詢訂單：<input type="text" placeholder="訂單編號..." style="color: black" id="select_value">
+            <button type="button" class="btn btn-success" onclick="quesy()">查詢</button>
+            <br />
+            <br />
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -118,15 +137,15 @@
     <script type="text/javascript">
         function Destroy_Value() {
             new Chart(document.getElementById("chartjs-4"),
-                    {
-                        "type": "doughnut", "data": {
-                            "labels": ["A", "B", "C"],
-                            "datasets": [{
-                                "label": "My First Dataset", "data": [100, 150, 20],
-                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                            }]
-                        }
-                    });
+                {
+                    "type": "doughnut", "data": {
+                        "labels": ["A", "B", "C"],
+                        "datasets": [{
+                            "label": "My First Dataset", "data": [100, 150, 20],
+                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                        }]
+                    }
+                });
         };
 
         function Show_Value() {
