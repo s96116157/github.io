@@ -166,6 +166,8 @@
                     </span>
                 </button>
             </div>
+
+            <button type="button" class="btn btn-success " onclick="test()">TEST</button>
             <!--<input type="button" class="btn btn-primary" value="TEST" onclick="Google_Post()">-->
         </form>
     </div>
@@ -309,6 +311,17 @@
                 //alert("已經取消了刪除操作");
             }
         };
+
+        function test() {
+            var Today = new Date();
+            var yyyy = Today.getFullYear();
+            var MM = ('0' + (Today.getMonth() + 1)).substr(-2);
+            var dd = ('0' + Today.getDate()).substr(-2);
+            var HH = ('0' + Today.getHours()).substr(-2);
+            var mm = ('0' + Today.getMinutes()).substr(-2);
+            var ss = ('0' + Today.getSeconds()).substr(-2);
+            console.log("" + yyyy + "" + MM + "" + dd + "" + HH + '' + mm + "" + ss);
+        }
 
         function GetDate() {
             var d = new Date();
