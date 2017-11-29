@@ -11,6 +11,7 @@ You don't need to build server by youself.
 ## Google App Script
 
 Use **function doGet(e)** get information.
+**url** is your **[Google Cloud Sheep](https://docs.google.com/spreadsheets/)** URL.
 
 ```javascript
 function doGet(e) {  
@@ -84,7 +85,9 @@ function write(params, SheetName, lastRow)
   
   return id;
 };
+```
 
+```javascript
 function GetTime()
 {
   var Today = new Date();
@@ -97,13 +100,3 @@ function GetTime()
   return '' + yyyy + '' + MM + '' + dd + '' + HH + '' + mm + '' + ss + '';
 }
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/s96116157/index/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
