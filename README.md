@@ -4,7 +4,7 @@
 [![MIT license](https://img.shields.io/badge/built%20with-Google%20App%20Script-blue.svg)](https://developers.google.com/apps-script/)
 ![MIT license](https://img.shields.io/badge/built%20with-JavaScript-red.svg)
 
-**You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheep](https://docs.google.com/spreadsheets/).**
+**You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheets](https://docs.google.com/spreadsheets/).**
 
 You don't need to build server by youself.
 
@@ -12,9 +12,11 @@ You don't need to build server by youself.
 
 Use **function doGet(e)** get information.
 
-**Your URL** is your **[Google Cloud Sheep](https://docs.google.com/spreadsheets/)** URL.
+**Your URL** is your **[Google Cloud Sheet](https://docs.google.com/spreadsheets/)** URL.
 
-**Exsample [My Google Sheep](https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=0)**
+**Exsample [My Google Sheet](https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=0)**
+
+**name** is your sheets name
 ```javascript
 function doGet(e) {  
   var params = e.parameter;
