@@ -11,8 +11,10 @@ You don't need to build server by youself.
 ## Google App Script
 
 Use **function doGet(e)** get information.
-**url** is your **[Google Cloud Sheep](https://docs.google.com/spreadsheets/)** URL.
 
+**Your URL** is your **[Google Cloud Sheep](https://docs.google.com/spreadsheets/)** URL.
+
+**Exsample [My Google Sheep](https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=0)**
 ```javascript
 function doGet(e) {  
   var params = e.parameter;
