@@ -10,7 +10,7 @@ You don't need to build server by youself.
 
 ## Google App Script
 
-Use [function doGet(e)](#getting-started) get information.
+Use ```javascript function doGet(e) ``` get information.
 
 ```javascript
 function doGet(e) {  
