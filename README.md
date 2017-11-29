@@ -5,7 +5,8 @@
 ![MIT license](https://img.shields.io/badge/built%20with-JavaScript-red.svg)
 
 **You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheep](https://docs.google.com/spreadsheets/).**
-**You don't need to build server by youself.**
+
+You don't need to build server by youself.
 
 ## Google App Script
 
