@@ -3,10 +3,8 @@
 # Google App Script Exsample
 [![MIT license](https://img.shields.io/badge/built%20with-Google%20App%20Script-blue.svg)](https://developers.google.com/apps-script/)
 ![MIT license](https://img.shields.io/badge/built%20with-JavaScript-red.svg)
-
-**You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheep](https://docs.google.com/spreadsheets/).**
-
-**You don't need to build server by youself.**
+*You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheep](https://docs.google.com/spreadsheets/).*
+*You don't need to build server by youself.*
 
 ## Google App Script
 
