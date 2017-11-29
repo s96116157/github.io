@@ -10,11 +10,7 @@ You don't need to build server by youself.
 
 ## Google App Script
 
-Use 
-```javascript
-function doGet(e) 
-``` 
-get information.
+Use **function doGet(e)** get information.
 
 ```javascript
 function doGet(e) {  
@@ -41,7 +37,9 @@ function doGet(e) {
   };    
   return ContentService.createTextOutput(back_value);
 }
+```
 
+```javascript
 function write(params, SheetName, lastRow)
 { 
   var id = Date.now();
