@@ -10,7 +10,7 @@ You don't need to build server by youself.
 
 ## Google App Script
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Use [function doGet(e)] get information.
 
 ```javascript
 function doGet(e) {  
