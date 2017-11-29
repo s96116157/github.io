@@ -4,9 +4,7 @@
 [![MIT license](https://img.shields.io/badge/built%20with-Google%20App%20Script-blue.svg)](https://developers.google.com/apps-script/)
 ![MIT license](https://img.shields.io/badge/built%20with-JavaScript-red.svg)
 
-You can use the [editor on GitHub](https://github.com/s96116157/index/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheep](https://docs.google.com/spreadsheets/). You don't need to build server by youself.
 
 ## Google App Script
 
