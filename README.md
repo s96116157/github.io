@@ -1,13 +1,22 @@
-## Welcome to GitHub Pages
+<img src="https://github.com/s96116157/s96116157.github.io/blob/master/demo/Picture/icon_index.png" width="128" align="right">
 
-You can use the [editor on GitHub](https://github.com/s96116157/index/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+# Google App Script Exsample
+[![MIT license](https://img.shields.io/badge/built%20with-Google%20App%20Script-blue.svg)](https://developers.google.com/apps-script/)
+![MIT license](https://img.shields.io/badge/built%20with-JavaScript-red.svg)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**You can use the [Google App Script](https://developers.google.com/apps-script/) send information to [Google Cloud Sheets](https://docs.google.com/spreadsheets/).**
+
+You don't need to build server by youself.
 
 ## Google App Script
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Use **function doGet(e)** get information.
 
+**Your URL** is your **[Google Cloud Sheet](https://docs.google.com/spreadsheets/)** URL.
+
+**Exsample [My Google Sheet](https://docs.google.com/spreadsheets/d/1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU/edit#gid=0)**
+
+**name** is your sheets name
 ```javascript
 function doGet(e) {  
   var params = e.parameter;
@@ -33,7 +42,9 @@ function doGet(e) {
   };    
   return ContentService.createTextOutput(back_value);
 }
+```
 
+```javascript
 function write(params, SheetName, lastRow)
 { 
   var id = Date.now();
@@ -78,7 +89,9 @@ function write(params, SheetName, lastRow)
   
   return id;
 };
+```
 
+```javascript
 function GetTime()
 {
   var Today = new Date();
@@ -91,13 +104,3 @@ function GetTime()
   return '' + yyyy + '' + MM + '' + dd + '' + HH + '' + mm + '' + ss + '';
 }
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/s96116157/index/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
