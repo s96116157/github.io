@@ -114,11 +114,7 @@ function doGet_2(params){
 
   var response = UrlFetchApp.fetch(queryString); 
   var data = response.getContentText().replace(/google.visualization.Query.setResponse/,'');
-  data = data.slice(9,data.length-2);
-  //var JSONString = JSON.stringify(data);
-  //var JSONOutput = ContentService.createTextOutput(JSONString);
-  //JSONOutput.setMimeType(ContentService.MimeType.JSON);
-  //console.log('TEST',JSONString);
+  data = data.slice(9,data.length-2); 
   return data;
 }
 ```
