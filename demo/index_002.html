@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Order</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/Chart.bundle.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        load();
+        function load() {
+            var url = "https://script.google.com/macros/s/AKfycbwQerqt4HKL_H5hvFvshvMSwWrnAusvvd0eVhDFwViHNmSQZ2tm/exec";
+            var parameter = {
+                query: "",
+                type: "read"
+            };
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: parameter,
+                success: function (data) {
+                    var table_array = new Array();
+                    var json_array = "";
+                    var obj = JSON.parse('{"data":' + data + '}');
+                    var col_infor = obj.data.table.cols; // Table_Name
+                    var row_infor = obj.data.table.rows;
+
+                    for (i = 0; i < col_infor.length; i++) {
+                        table_array.push(col_infor[i].label);
+                    }
+
+                    //============================================
+
+                    json_array += "[";
+                    for (a = 0; a < row_infor.length; a++) {
+                        json_array += '{';
+                        for (b = 0; b < table_array.length; b++) {
+                            json_array += '"';
+                            json_array += table_array[b];
+                            json_array += '":"';
+                            json_array += row_infor[a].c[b].v;
+                            json_array += '",'
+                        }
+                        json_array = json_array.slice(0, json_array.length - 1);
+                        json_array += "},";
+                    }
+                    json_array = json_array.slice(0, json_array.length - 1);
+                    json_array += "]";
+
+                    //============================================
+
+                    var test = JSON.parse(JSON.stringify(json_array));
+                    var table = $('#data').DataTable({
+                        destroy: true,
+                        data: eval(test), "oLanguage": {
+                            "sLengthMenu": "顯示 _MENU_ 筆記錄",
+                            "sZeroRecords": "無符合資料",
+                            "sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                            "sInfoFiltered": "(從 _MAX_ 項結果過濾)",
+                            "sInfoPostFix": "",
+                            "sSearch": "搜索:",
+                            "sUrl": "",
+                            "oPaginate": {
+                                "sFirst": "首頁",
+                                "sPrevious": "上頁",
+                                "sNext": "下頁",
+                                "sLast": "尾頁"
+                            }
+                        },
+                        "aLengthMenu": [[25, 50, 100], [25, 50, 100]],
+                        "iDisplayLength": 100,
+                        "columnDefs": [{
+                            "targets": -1,
+                            "data": null,
+                            "searchable": false,
+                            "paging": false,
+                            "ordering": false,
+                            "info": false
+                        }],
+                        columns: [
+                            { data: "SYSID" },
+                            { data: "Type" },
+                            { data: "Date" },
+                            { data: "Item" },
+                            { data: "Number" },
+                            { data: "Price" },
+                            { data: "Form_ID" }
+                        ]
+                    });
+                    //==============================================================
+                },
+                error: function (data) {
+                    alert("伺服器回應失敗，請重新再試一次。");
+                }
+            });
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: "Microsoft JhengHei",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin: 10px;">
+        <h1>Checking your order</h1>
+        <form>
+            <br />
+            <div>
+                <table id="data" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">編號</th>
+                            <th style="text-align: center;">訂單狀態</th>
+                            <th style="text-align: center;">訂購日期</th>
+                            <th style="text-align: center;">品項名稱</th>
+                            <th style="text-align: center;">訂購數量</th>
+                            <th style="text-align: center;">物品總價</th>
+                            <th style="text-align: center;">訂單編號</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
