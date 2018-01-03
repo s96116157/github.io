@@ -34,8 +34,8 @@ function doGet(e) {
   if(type == 'write'){
     back_value = write(params, SheetName, lastRow);
   }  
-  else if(type == 'read')  {  
-    
+  else if(type == 'read')  {      
+    return ContentService.createTextOutput(doGet_2(params));
   }
   else  {
     
@@ -102,5 +102,19 @@ function GetTime()
   var mm = ('0' + Today.getMinutes()).substr(-2);
   var ss = ('0' + Today.getSeconds()).substr(-2);
   return '' + yyyy + '' + MM + '' + dd + '' + HH + '' + mm + '' + ss + '';
+}
+```
+
+```javascript
+function doGet_2(params){
+  var sourceSheetString = 'https://spreadsheets.google.com/tq?tqx=out:json&key=1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU&gid=0&tq=';
+  var query = 'select A,B,C,D,E,F,G ';
+  query += params.query;
+  var queryString = sourceSheetString + query;
+
+  var response = UrlFetchApp.fetch(queryString); 
+  var data = response.getContentText().replace(/google.visualization.Query.setResponse/,'');
+  data = data.slice(9,data.length-2); 
+  return data;
 }
 ```
