@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body style="background-color: #666666;">
+    <form id="form1">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/JavaScript.js"></script>
+        <style>
+            button {
+                height: 50px;
+                width: 30%;
+                font-size: larger;
+            }
+        </style>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="height: 20px"></div>
+                <div class="col-sm-12" style="text-align: center">
+                    <button type="button" class="btn btn-info" onclick="getLocation()">取得目前座標</button>
+                </div>
+                <div class="col-sm-12" style="height: 20px"></div>
+                <div class="col-sm-12" id="map"></div>
+                <div class="col-sm-12" style="height: 20px"></div>
+                <div class="col-sm-12" id="location" style="text-align: center; font-size: 20px; color: #FFFFFF"></div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
