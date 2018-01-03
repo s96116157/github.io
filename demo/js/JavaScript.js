@@ -23,7 +23,7 @@ function showPosition(position) {
     var e = position.coords.longitude.toFixed(7);
     var latlon = n + "," + e;
     var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
-    + latlon + "&zoom=18&size=600x450&markers=size:mid%7color:red%7Clabel:S%7C" + latlon;
+    + latlon + "&zoom=18&size=600x450&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&markers=size:mid%7color:red%7Clabel:S%7C" + latlon;
     x.innerHTML = "<img src='" + img_url + "' style='display:block; margin: auto;'>";
     y.innerHTML = "" +
         "<ul style='list-style-type: none;'>" +
