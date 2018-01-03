@@ -19,7 +19,7 @@ function getLocation() {
 function showPosition(position) {
     var x = document.getElementById("map");
     var y = document.getElementById("location");
-    var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var latlon = position.coords.latitude.toFixed(7) + "," + position.coords.longitude.toFixed(7);
     var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
     + latlon + "&zoom=18&size=600x450&markers=size:mid%7color:red%7Clabel:S%7C" + latlon;
     x.innerHTML = "<img src='" + img_url + "' style='display:block; margin: auto;'>";
