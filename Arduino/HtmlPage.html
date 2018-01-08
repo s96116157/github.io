@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Arduino</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Microsoft JhengHei;
+            font-size: 24px;
+        }
+
+        span.a {
+            color: #00979c;
+        }
+
+        span.c {
+            color: #999999;
+        }
+
+        span.d {
+            color: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>使用可變電阻器來控制 LED 開關</h1>
+        <div style="height: 15px"></div>
+        <img src="img/001.png" style="height: 450px" class="img-thumbnail" />
+        <div style="height: 15px"></div>
+        <div class="row">
+            <div class="col-md-4"><span class="a">const int </span><span class="b">refVolts = 5;</span></div>
+            <div class="col-md-8"><span class="c">// 使用 Arduino 板 5V 參考電壓</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="a">const int </span><span class="b">led = 2;</span></div>
+            <div class="col-md-8"><span class="c">// LED 腳位 2</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="a">int </span><span class="b">val;</span></div>
+            <div class="col-md-8"><span class="c">// 數位值</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="a">float </span>volts;</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-8">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="a">void </span>setup() {</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="d">&nbsp;&nbsp;&nbsp;&nbsp;pinMode </span>(led, <span class="a">OUTPUT</span>);</div>
+            <div class="col-md-8"><span class="c">// 設定 腳位 2 為輸出模式</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="d">&nbsp;&nbsp;&nbsp;&nbsp;digitalWrite </span>(led, <span class="a">LOW</span>);</div>
+            <div class="col-md-8"><span class="c">// 關閉 LED</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="d">&nbsp;&nbsp;&nbsp;&nbsp;Serial.begin </span>(9600);</div>
+            <div class="col-md-8"><span class="c">// 初始化串列埠，傳輸速率為 9600 baud</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">}</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-8">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><span class="a">void </span>loop() {</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;val=<span class="d">analogRead </span>(0); </div>
+            <div class="col-md-8"><span class="c">// 讀取類比值電壓</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;volts=(<span class="a">float </span>)val*refVolts/1024; </div>
+            <div class="col-md-8"><span class="c">// 將數位值轉成類比值</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( "voltage=" );</div>
+            <div class="col-md-8"><span class="c">// 印出"voltage="</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( volts, 2 );</div>
+            <div class="col-md-8"><span class="c">// 印出類比電壓值 0.00 ~ 5.00</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( "V" );</div>
+            <div class="col-md-8"><span class="c">// 印出"V" 跟 換行</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;if( volts > 4.00 )</div>
+            <div class="col-md-8"><span class="c">// 如果類比電壓值 大於 4.00 以上</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;{</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( "HIGH" );</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( volts );</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">digitalWrite</span>( led, <span class="a">HIGH</span> );</div>
+            <div class="col-md-8"><span class="c">// 點亮 LED 燈</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;}else{</div>
+            <div class="col-md-8"><span class="c"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( "LOW" );</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">Serial.print</span>( volts );</div>
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">digitalWrite</span>( led, <span class="a">LOW</span> );</div>
+            <div class="col-md-8"><span class="c">// 關閉 LED 燈</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;};</div>
+            <div class="col-md-8"><span class="c"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">delay</span>(1000);</div>
+            <div class="col-md-8"><span class="c"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">}</div>
+            <div class="col-md-8"><span class="c"></span></div>
+        </div>
+    </div>
+    <div style="height: 50px"></div>
+</body>
+</html>
